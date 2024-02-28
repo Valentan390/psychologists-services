@@ -1,0 +1,50 @@
+.userLogoWrapper {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+}
+
+.userLogoUserWrapper {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+}
+
+.userLogoSvg {
+  width: 40px;
+  height: 40px;
+  fill: var(--mintGreen);
+}
+
+.userLogoName {
+  color: var(--deepAnthracite);
+  font-size: 16px;
+  font-weight: var(--medium);
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+}
+
+.userLogoButton {
+  display: inline-flex;
+  padding: 14px 39px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 30px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  color: var(--deepAnthracite);
+  font-size: 16px;
+  font-weight: var(--medium);
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+  transition: var(--transition);
+}
+
+.userLogoButton:hover,
+.userLogoButton:focus {
+  background: var(--seafoamGreen);
+}

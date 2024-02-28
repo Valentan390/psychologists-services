@@ -1,0 +1,10 @@
+.sectionHomePage {
+  padding-top: 78px;
+  padding-bottom: 100px;
+}
+
+.sectionHomePageWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
