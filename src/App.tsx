@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import PsychologistsPage from "./pages/PsychologistsPage/PsychologistsPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
-function App() {
+const App = () => {
   return (
     <>
       <Routes>
@@ -24,6 +24,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;

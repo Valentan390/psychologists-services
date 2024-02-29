@@ -1,35 +1,16 @@
-import { NavLink } from "react-router-dom";
-import s from "./Navigation.module.css";
+import { FC } from "react";
+import { StyledNav, StyledNavLink } from "./Navigation.styled";
+import { navLinks } from "../../helpers/ComponentData";
 
-const activeClassName = {
-  color: "var(--mintGreen)",
-};
-
-const Navigation = () => {
+const Navigation: FC = () => {
   return (
-    <nav className={s.navigahionNav}>
-      <NavLink
-        className={s.navigahionA}
-        style={({ isActive }) => (isActive ? activeClassName : undefined)}
-        to={"/home"}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        className={s.navigahionA}
-        style={({ isActive }) => (isActive ? activeClassName : undefined)}
-        to={"/psychologists"}
-      >
-        Psychologists
-      </NavLink>
-      <NavLink
-        className={s.navigahionA}
-        style={({ isActive }) => (isActive ? activeClassName : undefined)}
-        to={"/favorites"}
-      >
-        Favorites
-      </NavLink>
-    </nav>
+    <StyledNav>
+      {navLinks.map((link, index) => (
+        <StyledNavLink key={index} to={link.to}>
+          {link.text}
+        </StyledNavLink>
+      ))}
+    </StyledNav>
   );
 };
 
