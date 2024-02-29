@@ -1,23 +1,28 @@
-import { Link } from "react-router-dom";
-import s from "./CompanySlogan.module.css";
 import Icon from "../Icon/Icon";
+import {
+  StyledLink,
+  StyledText,
+  StyledTitle,
+  StyledTitleSpan,
+  StyledWrapper,
+} from "./CompanySlogan.styled";
 
 const CompanySlogan = () => {
   return (
-    <div className={s.companyWrapper}>
-      <h1 className={s.companyTitle}>
-        The road to the <span className={s.companyTitleSpan}>depths</span> of
-        the human soul
-      </h1>
-      <p className={s.companyText}>
+    <StyledWrapper>
+      <StyledTitle>
+        The road to the <StyledTitleSpan>depths</StyledTitleSpan> of the human
+        soul
+      </StyledTitle>
+      <StyledText>
         We help you to reveal your potential, overcome challenges and find a
         guide in your own life with the help of our experienced psychologists.
-      </p>
-      <Link className={s.companyLink} to={"/psychologists"}>
+      </StyledText>
+      <StyledLink to={"/psychologists"}>
         Get started
         <Icon width="18px" height="18px" iconName="icon-Arrow16" />
-      </Link>
-    </div>
+      </StyledLink>
+    </StyledWrapper>
   );
 };
 

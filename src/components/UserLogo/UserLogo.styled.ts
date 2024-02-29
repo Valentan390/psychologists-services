@@ -1,34 +1,30 @@
-.userLogoWrapper {
+import styled from "styled-components";
+
+export const StyledLogoWrapper = styled.div`
   display: flex;
   gap: 28px;
   justify-content: center;
   align-items: center;
   width: max-content;
-}
+`;
 
-.userLogoUserWrapper {
+export const StyledLogoUserWrapper = styled.div`
   display: flex;
   gap: 14px;
   justify-content: center;
   align-items: center;
   width: max-content;
-}
+`;
 
-.userLogoSvg {
-  width: 40px;
-  height: 40px;
-  fill: var(--mintGreen);
-}
-
-.userLogoName {
+export const StyledLogoName = styled.p`
   color: var(--deepAnthracite);
   font-size: 16px;
   font-weight: var(--medium);
   line-height: 1.25;
   letter-spacing: -0.16px;
-}
+`;
 
-.userLogoButton {
+export const StyledLogoButton = styled.button`
   display: inline-flex;
   padding: 14px 39px;
   justify-content: center;
@@ -42,9 +38,9 @@
   line-height: 1.25;
   letter-spacing: -0.16px;
   transition: var(--transition);
-}
 
-.userLogoButton:hover,
-.userLogoButton:focus {
-  background: var(--seafoamGreen);
-}
+  &:hover,
+  &:focus {
+    background: var(--seafoamGreen);
+  }
+`;

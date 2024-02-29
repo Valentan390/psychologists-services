@@ -1,15 +1,16 @@
-import s from "./UserAuth.module.css";
+import { FC } from "react";
+import {
+  StyledAutLogin,
+  StyledAuthSignup,
+  StyledAuthWrapper,
+} from "./UserAuth.styled";
 
-const UserAuth = () => {
+const UserAuth: FC = () => {
   return (
-    <div className={s.userAuthWrapper}>
-      <button className={s.userAuthButtonLogIn} type="button">
-        Log In
-      </button>
-      <button className={s.userAuthButtonRegistration} type="button">
-        Registration
-      </button>
-    </div>
+    <StyledAuthWrapper>
+      <StyledAutLogin type="button">Log In</StyledAutLogin>
+      <StyledAuthSignup type="button">Registration</StyledAuthSignup>
+    </StyledAuthWrapper>
   );
 };
 

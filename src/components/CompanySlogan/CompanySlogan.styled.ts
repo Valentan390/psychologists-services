@@ -1,26 +1,29 @@
-.companyWrapper {
-  max-width: 595px;
-}
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-.companyTitle {
+export const StyledWrapper = styled.div`
+  max-width: 595px;
+`;
+
+export const StyledTitle = styled.h1`
   color: var(--deepAnthracite);
   font-size: 80px;
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -1.6px;
   margin-bottom: 20px;
-}
+`;
 
-.companyTitleSpan {
+export const StyledTitleSpan = styled.span`
   color: var(--mintGreen);
   font-size: 80px;
-  font-style: italic;
   font-weight: 600;
+  font-style: italic;
   line-height: 1.02;
   letter-spacing: -1.6px;
-}
+`;
 
-.companyText {
+export const StyledText = styled.p`
   color: var(--deepAnthracite);
   font-size: 18px;
   font-weight: var(--medium);
@@ -28,9 +31,9 @@
   letter-spacing: -0.36px;
   margin-bottom: 40px;
   max-width: 510px;
-}
+`;
 
-.companyLink {
+export const StyledLink = styled(Link)`
   display: flex;
   padding: 18px 50px;
   justify-content: center;
@@ -45,9 +48,9 @@
   letter-spacing: -0.2px;
   transition: var(--transition);
   width: max-content;
-}
 
-.companyLink:hover,
-.companyLink:focus {
-  background: var(--seaGreen);
-}
+  &:hover,
+  &:focus {
+    background: var(--seaGreen);
+  }
+`;

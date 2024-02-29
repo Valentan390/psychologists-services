@@ -1,19 +1,17 @@
-.hederLogoP {
+import styled from "styled-components";
+
+export const StyledHeaderLogo = styled.p`
   color: var(--mintGreen);
-  /* font-family: Inter; */
   font-size: 20px;
-  /* font-style: normal; */
   font-weight: var(--bold);
   line-height: 1.2;
   letter-spacing: -0.4px;
-}
+`;
 
-.hederLogoSpan {
+export const StyledHederLogoSpan = styled.span`
   color: var(--deepAnthracite);
-  /* font-family: Inter; */
   font-size: 20px;
-  /* font-style: normal; */
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.4px;
-}
+`;

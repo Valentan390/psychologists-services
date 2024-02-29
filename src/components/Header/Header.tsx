@@ -2,18 +2,18 @@ import HeaderLogo from "../HeaderLogo/HeaderLogo";
 import Navigation from "../Navigation/Navigation";
 import UserAuth from "../UserAuth/UserAuth";
 import UserLogo from "../UserLogo/UserLogo";
-import s from "./Header.module.css";
+import { StyledHeader, StyledHeaderWrapper } from "./Header.styled";
 
 const Header = () => {
   const isLoggedIn = false;
   return (
-    <header className={s.headerSection}>
-      <div className={`${s.headerWraper} container`}>
+    <StyledHeader>
+      <StyledHeaderWrapper className="container">
         <HeaderLogo />
         <Navigation />
         {isLoggedIn ? <UserLogo /> : <UserAuth />}
-      </div>
-    </header>
+      </StyledHeaderWrapper>
+    </StyledHeader>
   );
 };
 

@@ -1,12 +1,14 @@
-.userAuthWrapper {
+import styled from "styled-components";
+
+export const StyledAuthWrapper = styled.div`
   display: flex;
   gap: 8px;
   justify-content: center;
   align-items: center;
   width: max-content;
-}
+`;
 
-.userAuthButtonLogIn {
+export const StyledAutLogin = styled.button`
   display: flex;
   padding: 14px 39px;
   justify-content: center;
@@ -20,14 +22,14 @@
   line-height: 1.25;
   letter-spacing: -0.16px;
   transition: var(--transition);
-}
 
-.userAuthButtonLogIn:focus,
-.userAuthButtonLogIn:hover {
-  background: var(--seafoamGreen);
-}
+  &:hover,
+  &:focus {
+    background: var(--seafoamGreen);
+  }
+`;
 
-.userAuthButtonRegistration {
+export const StyledAuthSignup = styled.button`
   display: flex;
   padding: 14px 40px;
   justify-content: center;
@@ -41,9 +43,9 @@
   line-height: 1.25;
   letter-spacing: -0.16px;
   transition: var(--transition);
-}
 
-.userAuthButtonRegistration:focus,
-.userAuthButtonRegistration:hover {
-  background: var(--seaGreen);
-}
+  &:hover,
+  &:focus {
+    background: var(--seaGreen);
+  }
+`;

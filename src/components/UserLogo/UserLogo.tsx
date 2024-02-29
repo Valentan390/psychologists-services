@@ -1,20 +1,26 @@
-import s from "./UserLogo.module.css";
-import sprite from "../../images/svg/sprite.svg";
+import Icon from "../Icon/Icon";
+import {
+  StyledLogoButton,
+  StyledLogoName,
+  StyledLogoUserWrapper,
+  StyledLogoWrapper,
+} from "./UserLogo.styled";
 
 const UserLogo = () => {
   const name = "Valentin";
   return (
-    <div className={s.userLogoWrapper}>
-      <div className={s.userLogoUserWrapper}>
-        <svg className={s.userLogoSvg}>
-          <use href={`${sprite}#icon-mdiUser`} />
-        </svg>
-        <p className={s.userLogoName}>{name}</p>
-      </div>
-      <button className={s.userLogoButton} type="button">
-        Log out
-      </button>
-    </div>
+    <StyledLogoWrapper>
+      <StyledLogoUserWrapper>
+        <Icon
+          width="40px"
+          height="40px"
+          fill="var(--mintGreen)"
+          iconName="icon-mdiUser"
+        />
+        <StyledLogoName>{name}</StyledLogoName>
+      </StyledLogoUserWrapper>
+      <StyledLogoButton type="button">Log out</StyledLogoButton>
+    </StyledLogoWrapper>
   );
 };
 
