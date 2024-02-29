@@ -51,9 +51,3 @@
 .companyLink:focus {
   background: var(--seaGreen);
 }
-
-.companySvg {
-  width: 18px;
-  height: 18px;
-  fill: var(--silkWhite);
-}

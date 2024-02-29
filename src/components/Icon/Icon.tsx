@@ -10,7 +10,7 @@ const Icon: FC<IconProps> = ({
   transform,
 }) => {
   return (
-    <svg width={width} height={height} fill={fill} transform={transform}>
+    <svg style={{ transform, width, height, fill }}>
       <use href={`${sprite}#${iconName}`} />
     </svg>
   );

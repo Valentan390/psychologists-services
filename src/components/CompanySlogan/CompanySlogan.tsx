@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import s from "./CompanySlogan.module.css";
-import sprite from "../../images/svg/sprite.svg";
+import Icon from "../Icon/Icon";
 
 const CompanySlogan = () => {
   return (
@@ -15,9 +15,7 @@ const CompanySlogan = () => {
       </p>
       <Link className={s.companyLink} to={"/psychologists"}>
         Get started
-        <svg className={s.companySvg}>
-          <use href={`${sprite}#icon-Arrow16`} />
-        </svg>
+        <Icon width="18px" height="18px" iconName="icon-Arrow16" />
       </Link>
     </div>
   );
