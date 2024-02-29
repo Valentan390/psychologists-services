@@ -1,3 +1,4 @@
+import { FC } from "react";
 import Icon from "../Icon/Icon";
 import {
   StyledLink,
@@ -7,7 +8,7 @@ import {
   StyledWrapper,
 } from "./CompanySlogan.styled";
 
-const CompanySlogan = () => {
+const CompanySlogan: FC = () => {
   return (
     <StyledWrapper>
       <StyledTitle>

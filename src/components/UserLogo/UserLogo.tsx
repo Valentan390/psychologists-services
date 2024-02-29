@@ -1,3 +1,4 @@
+import { FC } from "react";
 import Icon from "../Icon/Icon";
 import {
   StyledLogoButton,
@@ -6,7 +7,7 @@ import {
   StyledLogoWrapper,
 } from "./UserLogo.styled";
 
-const UserLogo = () => {
+const UserLogo: FC = () => {
   const name = "Valentin";
   return (
     <StyledLogoWrapper>

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { StyledHeaderLogo, StyledHederLogoSpan } from "./HeaderLogo.styled";
+import { FC } from "react";
 
-const HeaderLogo = () => {
+const HeaderLogo: FC = () => {
   return (
     <Link to={"/home"}>
       <StyledHeaderLogo>
