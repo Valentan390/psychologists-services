@@ -9,6 +9,8 @@ import {
   StyledSvgEye,
 } from "./InputAuth.styled";
 
+type AuthInputName = "username" | "email" | "password";
+
 const InputAuth: FC<InputAuthInter> = ({
   name,
   register,
@@ -24,7 +26,7 @@ const InputAuth: FC<InputAuthInter> = ({
   return (
     <StyledLabel>
       <StyledInput
-        {...register(name)}
+        {...register(name as AuthInputName)}
         placeholder={placeholder}
         type={
           name === "password"
