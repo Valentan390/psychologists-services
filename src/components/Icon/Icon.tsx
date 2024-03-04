@@ -8,9 +8,10 @@ const Icon: FC<IconProps> = ({
   height,
   fill = "var(--silkWhite)",
   transform,
+  stroke,
 }) => {
   return (
-    <svg style={{ transform, width, height, fill }}>
+    <svg style={{ transform, width, height, fill, stroke }}>
       <use href={`${sprite}#${iconName}`} />
     </svg>
   );

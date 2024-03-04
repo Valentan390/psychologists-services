@@ -4,6 +4,8 @@ import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import PsychologistsPage from "./pages/PsychologistsPage/PsychologistsPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import ModalContainer from "./components/ModalContainer/ModalContainer";
+import ModalContent from "./components/ModalContent/ModalContent";
 
 const App = () => {
   return (
@@ -22,6 +24,10 @@ const App = () => {
           /> */}
         </Route>
       </Routes>
+
+      <ModalContainer>
+        <ModalContent />
+      </ModalContainer>
     </>
   );
 };
