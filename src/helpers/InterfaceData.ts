@@ -38,3 +38,8 @@ export interface InputsAuthInter {
   name: string;
   placeholder: string;
 }
+
+export interface ModalInitialStateInter {
+  openModal: boolean;
+  modalContent: string;
+}

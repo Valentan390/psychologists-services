@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface ModalInitialStateInter {
-  openModal: boolean;
-  modalContent: string;
-}
+import { ModalInitialStateInter } from "../../helpers/InterfaceData";
 
 const modalInitialState: ModalInitialStateInter = {
   openModal: false,
