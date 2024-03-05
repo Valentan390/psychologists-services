@@ -9,6 +9,15 @@ const rotateAnimation = keyframes`
   }
 `;
 
+const rotateBackAnimation = keyframes`
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+`;
+
 export const StyledButtonClose = styled.button`
   padding: 0;
   width: 32px;
@@ -21,5 +30,9 @@ export const StyledButtonClose = styled.button`
 
   &:hover {
     animation: ${rotateAnimation} 0.3s forwards;
+  }
+
+  &:not(:hover) {
+    animation: ${rotateBackAnimation} 0.3s forwards;
   }
 `;
