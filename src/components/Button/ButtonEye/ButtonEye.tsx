@@ -1,11 +1,7 @@
 import { StyledButtonEye, StyledSvgEye } from "./ButtonEye.styled";
 import sprite from "../../../images/svg/sprite.svg";
 import { FC } from "react";
-
-interface ButtonEyeInter {
-  togglePasswordVisibility: () => void;
-  passwordVisible: boolean;
-}
+import { ButtonEyeInter } from "../../../helpers/InterfaceData";
 
 const ButtonEye: FC<ButtonEyeInter> = ({
   togglePasswordVisibility,

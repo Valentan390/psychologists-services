@@ -43,3 +43,8 @@ export interface ModalInitialStateInter {
   openModal: boolean;
   modalContent: string;
 }
+
+export interface ButtonEyeInter {
+  togglePasswordVisibility: () => void;
+  passwordVisible: boolean;
+}
