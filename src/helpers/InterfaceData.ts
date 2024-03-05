@@ -14,23 +14,29 @@ export interface IconProps {
   stroke?: string;
 }
 
-export interface FormDataSignUp {
-  username: string;
+// export interface FormDataSignUp {
+//   username: string;
+//   email: string;
+//   password: string;
+// }
+
+// export interface FormDataSignIn {
+//   email: string;
+//   password: string;
+// }
+
+export interface FormData {
+  username?: string;
   email: string;
   password: string;
 }
 
-export interface FormDataSignIn {
-  email: string;
-  password: string;
-}
-
-type FormDataCondition = FormDataSignUp | FormDataSignIn;
+// type FormDataCondition = FormDataSignUp | FormDataSignIn;
 
 export interface InputAuthInter {
   name: string;
   placeholder: string;
-  register: UseFormRegister<FormDataCondition>;
+  register: UseFormRegister<FormData>;
   errors: FieldErrors;
 }
 
@@ -47,4 +53,19 @@ export interface ModalInitialStateInter {
 export interface ButtonEyeInter {
   togglePasswordVisibility: () => void;
   passwordVisible: boolean;
+}
+
+export interface AuthOptionsInter {
+  email: string;
+  password: string;
+  username?: string;
+  modalType: string;
+  reset: () => void;
+}
+
+export interface AuthUserDataInter {
+  name: string;
+  email: string;
+  token: string;
+  id: string;
 }

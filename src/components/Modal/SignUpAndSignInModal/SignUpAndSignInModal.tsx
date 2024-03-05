@@ -12,32 +12,29 @@ import {
   StyledFormSignUpWrapper,
   StyledSignUpWrapper,
 } from "./SignUpAndSignInModal.styled";
-
-import { FormDataSignUp, FormDataSignIn } from "../../../helpers/InterfaceData";
+import { FormData } from "../../../helpers/InterfaceData";
 import { inputSignUp, inputSignIn } from "../../../helpers/ComponentData";
 import ButtonClose from "../../Button/ButtonClose/ButtonClose";
+import { useAuth } from "../../../hooks/useAuth";
 
 const SignUpAndSignInModal: FC<{ modalType: string }> = ({
   modalType = "SignUp",
 }) => {
   const schema = modalType === "SignUp" ? schemaSignup : schemaSignin;
-  const defaultValues =
-    modalType === "SignUp" ? ({} as FormDataSignUp) : ({} as FormDataSignIn);
+  const { handleAuth } = useAuth();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty, isValid },
     reset,
-  } = useForm<FormDataSignUp | FormDataSignIn>({
+  } = useForm<FormData>({
     mode: "onTouched",
     resolver: yupResolver(schema),
-    defaultValues,
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    reset();
+  const onSubmit = handleSubmit(async ({ username, email, password }) => {
+    handleAuth({ email, password, username, modalType, reset });
   });
 
   return (
