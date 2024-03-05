@@ -1,13 +1,7 @@
 import { FC, useState } from "react";
-import sprite from "../../images/svg/sprite.svg";
 import { InputAuthInter } from "../../helpers/InterfaceData";
-import {
-  StyledButtonEye,
-  StyledError,
-  StyledInput,
-  StyledLabel,
-  StyledSvgEye,
-} from "./InputAuth.styled";
+import { StyledError, StyledInput, StyledLabel } from "./InputAuth.styled";
+import ButtonEye from "../Button/ButtonEye/ButtonEye";
 
 type AuthInputName = "username" | "email" | "password";
 
@@ -42,13 +36,10 @@ const InputAuth: FC<InputAuthInter> = ({
       <StyledError>{String(errors[name]?.message || "")}</StyledError>
 
       {name === "password" && (
-        <StyledButtonEye type="button" onClick={togglePasswordVisibility}>
-          <StyledSvgEye>
-            <use
-              href={`${sprite}#icon-${!passwordVisible ? "eye-off" : "eye"} `}
-            />
-          </StyledSvgEye>
-        </StyledButtonEye>
+        <ButtonEye
+          togglePasswordVisibility={togglePasswordVisibility}
+          passwordVisible={passwordVisible}
+        />
       )}
     </StyledLabel>
   );

@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { useModal } from "../../hooks/userModal";
 import SignUpAndSignInModal from "../Modal/SignUpAndSignInModal/SignUpAndSignInModal";
+import useModalHandler from "../../hooks/useModalHandler";
 
 const ModalContent: FC = () => {
-  const { modalContent } = useModal();
+  const { modalContent } = useModalHandler();
 
   switch (modalContent) {
     case "UserSignUpModal":

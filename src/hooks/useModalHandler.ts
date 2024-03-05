@@ -11,12 +11,12 @@ const useModalHandler = () => {
   const modalStatus = useSelector(selectOpenModal);
   const modalContent = useSelector(selectModalContent);
 
-  const handleCloseModal = () => {
+  const handleCloseModal: () => void = () => {
     dispatch(setModalStatus(false));
     dispatch(setModalContent(""));
   };
 
-  const handleOpenModal = (modalContent: string) => {
+  const handleOpenModal: (modalContent: string) => void = (modalContent) => {
     dispatch(setModalStatus(true));
     dispatch(setModalContent(modalContent));
   };
