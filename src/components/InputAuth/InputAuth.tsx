@@ -17,20 +17,19 @@ const InputAuth: FC<InputAuthInter> = ({
     setPasswordVisible(!passwordVisible);
   };
 
+  const getInputType: () => "password" | "email" | "text" = () => {
+    if (name === "password") {
+      return passwordVisible ? "text" : "password";
+    }
+    return name === "email" ? "email" : "text";
+  };
+
   return (
     <StyledLabel>
       <StyledInput
         {...register(name as AuthInputName)}
         placeholder={placeholder}
-        type={
-          name === "password"
-            ? passwordVisible
-              ? "text"
-              : "password"
-            : name === "email"
-            ? "email"
-            : "text"
-        }
+        type={getInputType()}
         $error={!!errors[name]}
       />
       <StyledError>{String(errors[name]?.message || "")}</StyledError>
