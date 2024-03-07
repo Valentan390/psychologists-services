@@ -7,4 +7,5 @@ export const StyledPsychologistsList = styled.ul`
   justify-content: start;
   align-items: start;
   width: 100%;
+  margin-top: 32px;
 `;

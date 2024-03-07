@@ -13,6 +13,7 @@ import {
 } from "firebase/database";
 import PsychologistlistItem from "../PsychologistlistItem/PsychologistlistItem";
 import { StyledPsychologistsList } from "./PsychologistsList.styled";
+import SelectPsychologists from "../SelectPsychologists/SelectPsychologists";
 
 interface Psychologist {
   id: string;
@@ -25,6 +26,7 @@ interface Psychologist {
   license: string;
   initial_consultation: string;
   about: string;
+  reviews: [];
 }
 
 const PsychologistsList = () => {
@@ -64,26 +66,30 @@ const PsychologistsList = () => {
   };
 
   return (
-    <StyledPsychologistsList>
-      {psychologists?.map((psychologist, index) => (
-        <PsychologistlistItem
-          key={index}
-          avatar_url={psychologist.avatar_url}
-          name={psychologist.name}
-          rating={psychologist.rating}
-          experience={psychologist.experience}
-          license={psychologist.license}
-          initial_consultation={psychologist.initial_consultation}
-          specialization={psychologist.specialization}
-          price_per_hour={psychologist.price_per_hour}
-          about={psychologist.about}
-        />
-      ))}
-      <button onClick={handlePrevPage} disabled={currentPage === 0}>
-        Previous
-      </button>
-      <button onClick={handleNextPage}>Next</button>
-    </StyledPsychologistsList>
+    <>
+      <SelectPsychologists />
+      <StyledPsychologistsList>
+        {psychologists?.map((psychologist, index) => (
+          <PsychologistlistItem
+            key={index}
+            avatar_url={psychologist.avatar_url}
+            name={psychologist.name}
+            rating={psychologist.rating}
+            experience={psychologist.experience}
+            license={psychologist.license}
+            initial_consultation={psychologist.initial_consultation}
+            specialization={psychologist.specialization}
+            price_per_hour={psychologist.price_per_hour}
+            about={psychologist.about}
+            reviews={psychologist.reviews}
+          />
+        ))}
+        <button onClick={handlePrevPage} disabled={currentPage === 0}>
+          Previous
+        </button>
+        <button onClick={handleNextPage}>Next</button>
+      </StyledPsychologistsList>
+    </>
   );
 };
 

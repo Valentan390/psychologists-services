@@ -1,8 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Icon from "../Icon/Icon";
 import {
   StyledAbout,
   StyledBuutonHeart,
+  StyledBuutonReadMore,
   StyledContainerDescription,
   StyledContainerDiv,
   StyledContainerFoto,
@@ -20,6 +21,7 @@ import {
   StyledSvgContainer,
   StyledWrapper,
 } from "./PsychologistlistItem.styled";
+import PsychologistItemReviews from "../PsychologistItemReviews/PsychologistItemReviews";
 
 interface PsychologistlistItemInter {
   avatar_url: string;
@@ -31,6 +33,7 @@ interface PsychologistlistItemInter {
   specialization: string;
   initial_consultation: string;
   about: string;
+  reviews: [];
 }
 
 const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
@@ -43,7 +46,14 @@ const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
   specialization,
   initial_consultation,
   about,
+  reviews,
 }) => {
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
   return (
     <StyledWrapper>
       <StyledContainerFoto>
@@ -110,6 +120,14 @@ const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
         </StyledContainerDiv>
 
         <StyledAbout>{about}</StyledAbout>
+
+        {showFullDescription ? (
+          <PsychologistItemReviews reviews={reviews} />
+        ) : null}
+
+        <StyledBuutonReadMore type="button" onClick={toggleDescription}>
+          {showFullDescription ? "Read less" : "Read more"}
+        </StyledBuutonReadMore>
       </StyledContainerDescription>
     </StyledWrapper>
   );

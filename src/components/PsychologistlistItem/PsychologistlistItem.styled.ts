@@ -129,6 +129,7 @@ export const StyledAbout = styled.p`
   font-weight: var(--regular);
   line-height: 1.25;
   margin-top: 24px;
+  margin-bottom: 14px;
 `;
 
 export const StyledContainerHeart = styled.div`
@@ -143,4 +144,25 @@ export const StyledBuutonHeart = styled.button`
   width: 26px;
   height: 26px;
   padding: 0;
+`;
+
+export const StyledBuutonReadMore = styled.button`
+  display: inline-flex;
+  padding: 14px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 30px;
+  background: var(--mintGreen);
+  color: var(--silkWhite);
+  font-size: 16px;
+  font-weight: var(--medium);
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+  transition: var(--transition);
+  margin-right: 88px;
+
+  &:hover {
+    background: var(--seaGreen);
+  }
 `;
