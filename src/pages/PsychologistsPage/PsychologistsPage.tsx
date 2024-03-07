@@ -1,9 +1,19 @@
-// import React from 'react'
+import PsychologistsList from "../../components/PsychologistsList/PsychologistsList";
+import {
+  StyledPsychologistsPageSection,
+  StyledPsychologistsPageWrapper,
+} from "./PsychologistsPage.styled";
 
 const PsychologistsPage = () => {
   return (
-    <div>PsychologistsPage</div>
-  )
-}
+    <main>
+      <StyledPsychologistsPageSection>
+        <StyledPsychologistsPageWrapper className="container">
+          <PsychologistsList />
+        </StyledPsychologistsPageWrapper>
+      </StyledPsychologistsPageSection>
+    </main>
+  );
+};
 
-export default PsychologistsPage
+export default PsychologistsPage;
