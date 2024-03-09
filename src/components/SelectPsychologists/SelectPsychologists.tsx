@@ -5,6 +5,7 @@ import { setFilter } from "../../redux/filter/filterSlise";
 import { StyledOptionInter } from "../../helpers/InterfaceData";
 import { customStyles } from "./SelectCustomStyles";
 import { options } from "../../helpers/ComponentData";
+import { StyledSelectTitle } from "./SelectPsychologists.styled";
 
 const SelectPsychologists = () => {
   const [selectedOption, setSelectedOption] =
@@ -21,12 +22,15 @@ const SelectPsychologists = () => {
   }, [dispatch, selectedOption]);
 
   return (
-    <Select
-      options={options}
-      styles={customStyles}
-      value={selectedOption}
-      onChange={handleChange}
-    />
+    <>
+      <StyledSelectTitle>Filters</StyledSelectTitle>
+      <Select
+        options={options}
+        styles={customStyles}
+        value={selectedOption}
+        onChange={handleChange}
+      />
+    </>
   );
 };
 
