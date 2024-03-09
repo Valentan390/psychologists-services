@@ -14,24 +14,11 @@ export interface IconProps {
   stroke?: string;
 }
 
-// export interface FormDataSignUp {
-//   username: string;
-//   email: string;
-//   password: string;
-// }
-
-// export interface FormDataSignIn {
-//   email: string;
-//   password: string;
-// }
-
 export interface FormData {
   username?: string;
   email: string;
   password: string;
 }
-
-// type FormDataCondition = FormDataSignUp | FormDataSignIn;
 
 export interface InputAuthInter {
   name: string;
@@ -68,4 +55,26 @@ export interface AuthUserDataInter {
   email: string;
   token: string;
   id: string;
+}
+
+export interface StyledOptionInter {
+  value: string;
+  label: string;
+}
+
+export interface PsychologistInter {
+  avatar_url: string;
+  name: string;
+  rating: number;
+  price_per_hour: number;
+  experience: string;
+  license: string;
+  specialization: string;
+  initial_consultation: string;
+  about: string;
+  reviews: [];
+}
+
+export interface PsychologistsStateinter {
+  psychologists: PsychologistInter[];
 }

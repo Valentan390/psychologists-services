@@ -22,8 +22,14 @@ import {
   StyledWrapper,
 } from "./PsychologistlistItem.styled";
 import PsychologistItemReviews from "../PsychologistItemReviews/PsychologistItemReviews";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavorite } from "../../redux/favorite/favoriteSelectors";
+import {
+  addFavorites,
+  removeFavorites,
+} from "../../redux/favorite/favoriteSlise";
 
-interface PsychologistlistItemInter {
+interface Psychologist {
   avatar_url: string;
   name: string;
   rating: number;
@@ -36,19 +42,29 @@ interface PsychologistlistItemInter {
   reviews: [];
 }
 
-const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
-  avatar_url,
-  name,
-  rating,
-  price_per_hour,
-  experience,
-  license,
-  specialization,
-  initial_consultation,
-  about,
-  reviews,
+interface PsychologistlistItemProps {
+  psychologist: Psychologist;
+}
+
+const PsychologistlistItem: FC<PsychologistlistItemProps> = ({
+  psychologist,
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const favorites = useSelector(selectFavorite);
+  const dispatch = useDispatch();
+
+  const isFavorite = favorites.some(
+    (favorite) => favorite.name === psychologist.name
+  );
+
+  const toggleFavorite = (psychologist: Psychologist) => {
+    if (isFavorite) {
+      dispatch(removeFavorites(psychologist));
+    } else {
+      dispatch(addFavorites(psychologist));
+    }
+  };
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
@@ -57,7 +73,7 @@ const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
   return (
     <StyledWrapper>
       <StyledContainerFoto>
-        <StyledImg src={avatar_url} alt={name} />
+        <StyledImg src={psychologist.avatar_url} alt={psychologist.name} />
         <StyledSvgContainer>
           <Icon iconName="icon-Group82" width="14px" height="14px" />
         </StyledSvgContainer>
@@ -70,7 +86,7 @@ const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
             <StyledContainerPrice>
               <StyledContainerRating>
                 <Icon width="16px" height="16px" iconName="icon-Star2" />
-                <StyledRating>Rating:{rating}</StyledRating>
+                <StyledRating>Rating:{psychologist.rating}</StyledRating>
               </StyledContainerRating>
               <Icon
                 iconName="icon-Vector3"
@@ -80,49 +96,56 @@ const PsychologistlistItem: FC<PsychologistlistItemInter> = ({
               />
               <StyledRating>
                 Price / 1 hour:{" "}
-                <StyledPriceSpan>{price_per_hour}$</StyledPriceSpan>
+                <StyledPriceSpan>
+                  {psychologist.price_per_hour}$
+                </StyledPriceSpan>
               </StyledRating>
             </StyledContainerPrice>
 
-            <StyledBuutonHeart>
+            <StyledBuutonHeart onClick={() => toggleFavorite(psychologist)}>
               <Icon
                 width="26px"
                 height="26px"
                 iconName="icon-heartNormal"
-                stroke="var(--deepAnthracite)"
+                stroke={isFavorite ? "" : "var(--deepAnthracite)"}
+                fill={isFavorite ? "var(--mintGreen)" : "var(--silkWhite)"}
               />
             </StyledBuutonHeart>
           </StyledContainerHeart>
         </StyledContainerPsychologist>
 
-        <StyledName>{name}</StyledName>
+        <StyledName>{psychologist.name}</StyledName>
 
         <StyledContainerDiv>
           <StyledContainerP>
             Experience:
-            <StyledContainerSpan>{experience}</StyledContainerSpan>
+            <StyledContainerSpan>{psychologist.experience}</StyledContainerSpan>
           </StyledContainerP>
           <StyledContainerP>
             License:
-            <StyledContainerSpan>{license}</StyledContainerSpan>
+            <StyledContainerSpan>{psychologist.license}</StyledContainerSpan>
           </StyledContainerP>
         </StyledContainerDiv>
 
         <StyledContainerDiv>
           <StyledContainerP>
             Specialization:
-            <StyledContainerSpan>{specialization}</StyledContainerSpan>
+            <StyledContainerSpan>
+              {psychologist.specialization}
+            </StyledContainerSpan>
           </StyledContainerP>
           <StyledContainerP>
             Initial_consultation:
-            <StyledContainerSpan>{initial_consultation}</StyledContainerSpan>
+            <StyledContainerSpan>
+              {psychologist.initial_consultation}
+            </StyledContainerSpan>
           </StyledContainerP>
         </StyledContainerDiv>
 
-        <StyledAbout>{about}</StyledAbout>
+        <StyledAbout>{psychologist.about}</StyledAbout>
 
         {showFullDescription ? (
-          <PsychologistItemReviews reviews={reviews} />
+          <PsychologistItemReviews reviews={psychologist.reviews} />
         ) : null}
 
         <StyledBuutonReadMore type="button" onClick={toggleDescription}>

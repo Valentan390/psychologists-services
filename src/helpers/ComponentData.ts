@@ -1,4 +1,4 @@
-import { InputsAuthInter, NavLinks } from "./InterfaceData";
+import { InputsAuthInter, NavLinks, StyledOptionInter } from "./InterfaceData";
 import { Variants } from "framer-motion";
 
 export const navLinks: NavLinks[] = [
@@ -34,3 +34,13 @@ export const containerVariants: Variants = {
     transition: { delay: 0, duration: 0.5 },
   },
 };
+
+export const options: StyledOptionInter[] = [
+  { value: "A to Z", label: "A to Z" },
+  { value: "Z to A", label: "Z to A" },
+  { value: "Less than 10$", label: "Less than 10$" },
+  { value: "Greater than 10$", label: "Greater than 10$" },
+  { value: "Popular", label: "Popular" },
+  { value: "Not popular", label: "Not popular" },
+  { value: "Show all", label: "Show all" },
+];
