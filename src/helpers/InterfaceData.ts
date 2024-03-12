@@ -98,3 +98,11 @@ export interface SelectMeetingTimeProps {
   disabled?: boolean;
   name: string;
 }
+
+export interface FormDataMakeAppointment {
+  userName: string;
+  email: string;
+  userPhone: string;
+  meetingTime: string;
+  userComment: string;
+}

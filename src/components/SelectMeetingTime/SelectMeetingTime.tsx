@@ -1,4 +1,4 @@
-import Select from "react-select";
+import Select, { components } from "react-select";
 import { FC, useState } from "react";
 import { customStyles } from "./SelectMeetingTime";
 import CustomIconComponent from "./CustomIconComponent/CustomIconComponent";
@@ -7,6 +7,16 @@ import {
   SelectMeetingTimeProps,
 } from "../../helpers/InterfaceData";
 import { optionsSelectMeetingTime } from "../../helpers/ComponentData";
+
+const { DropdownIndicator } = components;
+
+const CustomDropdownIndicator: FC<any> = (props) => {
+  return (
+    <DropdownIndicator {...props}>
+      <CustomIconComponent onToggleMenu={props.selectProps.onToggleMenu} />
+    </DropdownIndicator>
+  );
+};
 
 const SelectMeetingTime: FC<SelectMeetingTimeProps> = ({
   onChange,
@@ -41,9 +51,7 @@ const SelectMeetingTime: FC<SelectMeetingTimeProps> = ({
         onMenuClose={toggleMenu}
         onChange={handleChange}
         components={{
-          DropdownIndicator: () => (
-            <CustomIconComponent onToggleMenu={toggleMenu} />
-          ),
+          DropdownIndicator: CustomDropdownIndicator,
         }}
       />
     </>

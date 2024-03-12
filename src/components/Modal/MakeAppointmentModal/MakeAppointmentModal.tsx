@@ -20,14 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import SelectMeetingTime from "../../SelectMeetingTime/SelectMeetingTime.tsx";
 import { schemaMakeAppointment } from "../../../helpers/validation.ts";
-
-interface FormDataMakeAppointment {
-  userName: string;
-  email: string;
-  userPhone: string;
-  meetingTime: string;
-  userComment: string;
-}
+import { FormDataMakeAppointment } from "../../../helpers/InterfaceData.ts";
 
 const MakeAppointmentModal = () => {
   const { makeAppointmentPsychologist } = useModalHandler();
@@ -105,10 +98,6 @@ const MakeAppointmentModal = () => {
         <p>{errors.email?.message}</p>
 
         <StyledMakeFormTexterea
-          //   name="userComment"
-          id=""
-          //   cols={30}
-          //   rows={80}
           placeholder="Comment"
           {...register("userComment")}
         ></StyledMakeFormTexterea>
