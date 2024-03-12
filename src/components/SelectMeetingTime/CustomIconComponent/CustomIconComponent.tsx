@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Icon from "../../Icon/Icon";
+import { StyledIconButton } from "./CustomIconComponent.styled";
 
 interface CustomIconComponentProps {
   onToggleMenu: () => void;
@@ -9,7 +10,7 @@ const CustomIconComponent: FC<CustomIconComponentProps> = ({
   onToggleMenu,
 }) => {
   return (
-    <button type="button" onClick={onToggleMenu}>
+    <StyledIconButton type="button" onClick={onToggleMenu}>
       {
         <Icon
           width="18px"
@@ -18,7 +19,7 @@ const CustomIconComponent: FC<CustomIconComponentProps> = ({
           stroke="var(--deepAnthracite)"
         />
       }
-    </button>
+    </StyledIconButton>
   );
 };
 

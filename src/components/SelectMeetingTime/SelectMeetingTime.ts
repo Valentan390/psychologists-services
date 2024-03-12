@@ -97,4 +97,12 @@ export const customStyles: StylesConfig<OptionSelectMeetingTime, false> = {
     ...provided,
     display: "none",
   }),
+
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    padding: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }),
 };
