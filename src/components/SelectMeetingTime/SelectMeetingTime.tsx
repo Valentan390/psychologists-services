@@ -1,5 +1,5 @@
-import Select, { GroupBase } from "react-select";
-import { forwardRef, useState } from "react";
+import Select from "react-select";
+import { FC, useState } from "react";
 import { customStyles } from "./SelectMeetingTime";
 import CustomIconComponent from "./CustomIconComponent/CustomIconComponent";
 import {
@@ -8,10 +8,12 @@ import {
 } from "../../helpers/InterfaceData";
 import { optionsSelectMeetingTime } from "../../helpers/ComponentData";
 
-const SelectMeetingTime = forwardRef<
-  Select<OptionSelectMeetingTime, false, GroupBase<OptionSelectMeetingTime>>,
-  SelectMeetingTimeProps
->(({ onChange, onBlur, disabled, name }, ref) => {
+const SelectMeetingTime: FC<SelectMeetingTimeProps> = ({
+  onChange,
+  onBlur,
+  disabled,
+  name,
+}) => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
   const toggleMenu: () => void = () => {
@@ -28,7 +30,6 @@ const SelectMeetingTime = forwardRef<
   return (
     <>
       <Select
-        ref={ref}
         onBlur={onBlur}
         name={name}
         isDisabled={disabled}
@@ -47,6 +48,6 @@ const SelectMeetingTime = forwardRef<
       />
     </>
   );
-});
+};
 
 export default SelectMeetingTime;
