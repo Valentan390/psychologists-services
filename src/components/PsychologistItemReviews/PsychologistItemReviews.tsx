@@ -12,9 +12,11 @@ import {
   StyledReviewsWrapper,
   StyledTitl,
 } from "./PsychologistItemReviews.styled";
+import useModalHandler from "../../hooks/useModalHandler";
 
 interface PsychologistItemReviewsProps {
   reviews: [];
+  psychologist?: { name: string; avatar_url: string };
 }
 
 interface ReviewInter {
@@ -25,7 +27,10 @@ interface ReviewInter {
 
 const PsychologistItemReviews: FC<PsychologistItemReviewsProps> = ({
   reviews,
+  psychologist,
 }) => {
+  const { handleOpenModal } = useModalHandler();
+
   return (
     <>
       <StyledReviewsWrapper>
@@ -47,7 +52,11 @@ const PsychologistItemReviews: FC<PsychologistItemReviewsProps> = ({
           </StyledReviewsItem>
         ))}
       </StyledReviewsWrapper>
-      <StyledAppointmen>Make an appointment</StyledAppointmen>
+      <StyledAppointmen
+        onClick={() => handleOpenModal("MakeAppointment", psychologist)}
+      >
+        Make an appointment
+      </StyledAppointmen>
     </>
   );
 };

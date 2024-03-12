@@ -1,0 +1,12 @@
+.Wrapper {
+  display: flex;
+
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  width: calc((100% - 8px) / 2);
+  max-height: 500px;
+  transition: var(--transition);
+  margin-left: auto;
+}

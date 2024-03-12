@@ -2,8 +2,8 @@ import PsychologistlistItem from "../PsychologistlistItem/PsychologistlistItem";
 import { StyledPsychologistsList } from "./PsychologistsList.styled";
 import SelectPsychologists from "../SelectPsychologists/SelectPsychologists";
 import { useSelector } from "react-redux";
-import { sortPsychologists } from "../../redux/psyhologists/psyhologistsSelectors";
 import { Dispatch, FC, SetStateAction } from "react";
+import sortPsychologists from "../../redux/psyhologists/psyhologistsSelectors";
 
 interface PsychologistsListProps {
   setCurrentPage: Dispatch<SetStateAction<number>>;

@@ -35,6 +35,7 @@ export interface InputsAuthInter {
 export interface ModalInitialStateInter {
   openModal: boolean;
   modalContent: string;
+  makeAppointment: { name: string; avatar_url: string };
 }
 
 export interface ButtonEyeInter {
@@ -77,4 +78,23 @@ export interface PsychologistInter {
 
 export interface PsychologistsStateinter {
   psychologists: PsychologistInter[];
+}
+
+export interface OptionSelectMeetingTime {
+  label: string;
+  value: string;
+  isDisabled?: boolean;
+}
+
+export interface OptionSelectMeetingTime {
+  label: string;
+  value: string;
+  isDisabled?: boolean;
+}
+
+export interface SelectMeetingTimeProps {
+  onChange: (value: string) => void;
+  onBlur: () => void;
+  disabled?: boolean;
+  name: string;
 }

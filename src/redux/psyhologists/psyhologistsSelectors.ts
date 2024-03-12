@@ -7,7 +7,7 @@ export const selectPsychologists = (state: RootState) =>
 export const selectFilterValue = (state: RootState) =>
   state.filter.selectFilter;
 
-export const sortPsychologists = createSelector(
+const sortPsychologists = createSelector(
   [selectPsychologists, selectFilterValue],
   (psychologists, selectValue) =>
     [...psychologists].sort((a, b) => {
@@ -33,3 +33,5 @@ export const sortPsychologists = createSelector(
       }
     })
 );
+
+export default sortPsychologists;

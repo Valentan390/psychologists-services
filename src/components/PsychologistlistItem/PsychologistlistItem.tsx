@@ -145,7 +145,13 @@ const PsychologistlistItem: FC<PsychologistlistItemProps> = ({
         <StyledAbout>{psychologist.about}</StyledAbout>
 
         {showFullDescription ? (
-          <PsychologistItemReviews reviews={psychologist.reviews} />
+          <PsychologistItemReviews
+            reviews={psychologist.reviews}
+            psychologist={{
+              name: psychologist.name,
+              avatar_url: psychologist.avatar_url,
+            }}
+          />
         ) : null}
 
         <StyledBuutonReadMore type="button" onClick={toggleDescription}>
