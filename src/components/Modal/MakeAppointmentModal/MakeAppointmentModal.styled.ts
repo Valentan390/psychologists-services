@@ -74,8 +74,18 @@ export const StyledMakeForm = styled.form`
   width: 100%;
 `;
 
+interface MakeLabelProps {
+  $width?: string;
+}
+
+export const StyledMakeLabel = styled.label<MakeLabelProps>`
+  position: relative;
+  width: ${(props) => (props.$width ? "calc((100% - 8px) / 2)" : "100%")};
+`;
+
 interface InputProps {
   $props?: string;
+  $error?: boolean;
 }
 
 export const StyledMakeFormInput = styled.input<InputProps>`
@@ -85,34 +95,58 @@ export const StyledMakeFormInput = styled.input<InputProps>`
   align-items: center;
   gap: 18px;
   border-radius: 12px;
-  border: 1px solid rgba(25, 26, 21, 0.1);
-  width: ${(props) => (props.$props ? "calc((100% - 8px) / 2)" : "100%")};
-  // width: 100%
-  color: var(--deepAnthracite);
+  border: 1px solid
+    ${(props) => (props.$error ? "red" : "rgba(25, 26, 21, 0.1)")};
+  width: 100%;
+  color: ${(props) => (props.$error ? "red" : "var(--deepAnthracite)")};
   font-size: 16px;
   font-weight: var(--regular);
   line-height: 1.25;
+  transition: var(--transition);
 
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
   &::placeholder {
-    color: var(--deepAnthracite);
+    color: ${(props) => (props.$error ? "red" : "var(--deepAnthracite)")};
     font-size: 16px;
     font-weight: var(--regular);
     line-height: 1.25;
   }
+
+  &:hover {
+    border-color: ${(props) =>
+      props.$error ? "red" : "rgba(25, 26, 21, 0.3)"};
+    background-color: ${(props) =>
+      props.$error ? "transparent" : "transparent"};
+    box-shadow: ${(props) =>
+      props.$error ? "none" : "0 0 10px rgba(0, 0, 0, 0.3)"};
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${(props) => (props.$error ? "red" : "var(--seafoamGreen)")};
+    box-shadow: ${(props) =>
+      props.$error
+        ? "0 0 0 3px rgba(255, 0, 0, 0.3)"
+        : "0 0 10px rgba(0, 0, 0, 0.3)"};
+  }
 `;
 
-export const StyledMakeFormTexterea = styled.textarea`
+interface textareaProps {
+  $error?: boolean;
+}
+
+export const StyledMakeFormTexterea = styled.textarea<textareaProps>`
   display: inline-flex;
   padding: 16px 18px;
   justify-content: center;
   align-items: center;
   gap: 18px;
   border-radius: 12px;
-  border: 1px solid rgba(25, 26, 21, 0.1);
+  border: 1px solid ${(props) =>
+    props.$error ? "red" : "rgba(25, 26, 21, 0.1)"};
   color: var(--deepAnthracite);
   font-size: 16px;
   font-weight: var(--regular);
@@ -120,12 +154,32 @@ export const StyledMakeFormTexterea = styled.textarea`
   width: 100%;
   height: 116px;
   resize: none;
+   transition: var(--transition);
 
   &::placeholder {
-    color: var(--deepAnthracite);
+    color: ${(props) => (props.$error ? "red" : "var(--deepAnthracite)")};
     font-size: 16px;
     font-weight: var(--regular);
     line-height: 1.25;
+  }
+
+  &:hover {
+    border-color: ${(props) =>
+      props.$error ? "red" : "rgba(25, 26, 21, 0.3)"};
+    background-color: ${(props) =>
+      props.$error ? "transparent" : "transparent"};
+    box-shadow: ${(props) =>
+      props.$error ? "none" : "0 0 10px rgba(0, 0, 0, 0.3)"};
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${(props) => (props.$error ? "red" : "var(--seafoamGreen)")};
+    box-shadow: ${(props) =>
+      props.$error
+        ? "0 0 0 3px rgba(255, 0, 0, 0.3)"
+        : "0 0 10px rgba(0, 0, 0, 0.3)"};
+  }
   }
 `;
 
@@ -157,4 +211,14 @@ export const StyledMakeFormButton = styled.button`
   &:hover {
     background: var(--seaGreen);
   }
+`;
+
+export const StyledMakeError = styled.p`
+  position: absolute;
+  left: 0;
+  bottom: -13px;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: var(--regular);
+  line-height: 1.1;
 `;

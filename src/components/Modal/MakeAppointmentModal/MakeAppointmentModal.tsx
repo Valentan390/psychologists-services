@@ -1,7 +1,9 @@
 import ButtonClose from "../../Button/ButtonClose/ButtonClose";
 import useModalHandler from "../../../hooks/useModalHandler";
+import { toast } from "react-toastify";
 import {
   StyledMakeContainerName,
+  StyledMakeError,
   StyledMakeForm,
   StyledMakeFormButton,
   StyledMakeFormContainer,
@@ -10,6 +12,7 @@ import {
   StyledMakeFoto,
   StyledMakeFotoName,
   StyledMakeFotoYour,
+  StyledMakeLabel,
   StyledMakeName,
   StyledMakeText,
   StyledMakeTitle,
@@ -23,7 +26,7 @@ import { schemaMakeAppointment } from "../../../helpers/validation.ts";
 import { FormDataMakeAppointment } from "../../../helpers/InterfaceData.ts";
 
 const MakeAppointmentModal = () => {
-  const { makeAppointmentPsychologist } = useModalHandler();
+  const { makeAppointmentPsychologist, handleCloseModal } = useModalHandler();
 
   const {
     register,
@@ -36,7 +39,12 @@ const MakeAppointmentModal = () => {
     resolver: yupResolver(schemaMakeAppointment),
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    handleCloseModal();
+    toast.success(
+      `${data.userName} you have successfully made an appointment with the doctor for ${data.meetingTime}`
+    );
+  });
 
   return (
     <StyledMakeWrapper>
@@ -61,47 +69,59 @@ const MakeAppointmentModal = () => {
       </StyledMakeFotoName>
 
       <StyledMakeForm onSubmit={onSubmit}>
-        <StyledMakeFormInput
-          type="text"
-          placeholder="Name"
-          {...register("userName")}
-        />
-        <p>{errors.userName?.message}</p>
+        <StyledMakeLabel>
+          <StyledMakeFormInput
+            $error={!!errors.userName}
+            type="text"
+            placeholder="Name"
+            {...register("userName")}
+          />
+          <StyledMakeError>{errors.userName?.message}</StyledMakeError>
+        </StyledMakeLabel>
 
         <StyledMakeFormContainer>
-          <StyledMakeFormInput
-            $props="tel"
-            type="tel"
-            placeholder="+380"
-            {...register("userPhone")}
-          />
-          <p>{errors.userPhone?.message}</p>
-
-          {/* <StyledMakeFormInput props="tel" type="text" /> */}
+          <StyledMakeLabel $width="calc">
+            <StyledMakeFormInput
+              $props="tel"
+              $error={!!errors.userPhone}
+              type="tel"
+              placeholder="+380"
+              {...register("userPhone")}
+            />
+            <StyledMakeError>{errors.userPhone?.message}</StyledMakeError>
+          </StyledMakeLabel>
 
           <Controller
             name="meetingTime"
             control={control}
             rules={{ required: true }}
-            render={({ field }) => <SelectMeetingTime {...field} />}
+            render={({ field }) => (
+              <StyledMakeLabel $width="calc">
+                <SelectMeetingTime {...field} $error={!!errors.meetingTime} />
+                <StyledMakeError>{errors.meetingTime?.message}</StyledMakeError>
+              </StyledMakeLabel>
+            )}
           />
-          <p>{errors.meetingTime?.message}</p>
-
-          {/* <SelectMeetingTime /> */}
         </StyledMakeFormContainer>
 
-        <StyledMakeFormInput
-          type="email"
-          placeholder="Email"
-          {...register("email")}
-        />
-        <p>{errors.email?.message}</p>
+        <StyledMakeLabel>
+          <StyledMakeFormInput
+            $error={!!errors.email}
+            type="email"
+            placeholder="Email"
+            {...register("email")}
+          />
+          <StyledMakeError>{errors.email?.message}</StyledMakeError>
+        </StyledMakeLabel>
 
-        <StyledMakeFormTexterea
-          placeholder="Comment"
-          {...register("userComment")}
-        ></StyledMakeFormTexterea>
-        <p>{errors.userComment?.message}</p>
+        <StyledMakeLabel>
+          <StyledMakeFormTexterea
+            $error={!!errors.userComment}
+            placeholder="Comment"
+            {...register("userComment")}
+          ></StyledMakeFormTexterea>
+          <StyledMakeError>{errors.userComment?.message}</StyledMakeError>
+        </StyledMakeLabel>
 
         <StyledMakeFormButton type="submit">Send</StyledMakeFormButton>
       </StyledMakeForm>

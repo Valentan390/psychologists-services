@@ -1,17 +1,23 @@
 import { StylesConfig } from "react-select";
 import { OptionSelectMeetingTime } from "../../helpers/InterfaceData";
 
-export const customStyles: StylesConfig<OptionSelectMeetingTime, false> = {
+interface CustomStylesProps {
+  error?: boolean;
+}
+
+export const customStyles = ({
+  error,
+}: CustomStylesProps): StylesConfig<OptionSelectMeetingTime, false> => ({
   container: (provided) => ({
     ...provided,
-    width: "calc((100% - 8px) / 2)",
+    width: "100%",
     height: "52px",
   }),
 
   control: (provided) => ({
     ...provided,
     borderRadius: "12px",
-    border: "1px solid rgba(25, 26, 21, 0.10)",
+    border: `1px solid ${error ? "var(--red)" : "rgba(25, 26, 21, 0.10)"}`,
     // background: "#54BE96",
     color: "var(--deepAnthracite)",
     fontFamily: "Inter",
@@ -80,7 +86,7 @@ export const customStyles: StylesConfig<OptionSelectMeetingTime, false> = {
 
   placeholder: (provided) => ({
     ...provided,
-    color: "var(--deepAnthracite)",
+    color: `${error ? "var(--red)" : "var(--deepAnthracite)"}`,
   }),
 
   singleValue: (provided) => ({
@@ -105,4 +111,4 @@ export const customStyles: StylesConfig<OptionSelectMeetingTime, false> = {
     justifyContent: "center",
     alignItems: "center",
   }),
-};
+});

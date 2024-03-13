@@ -5,4 +5,8 @@ export const StyledIconButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
 `;

@@ -97,6 +97,7 @@ export interface SelectMeetingTimeProps {
   onBlur: () => void;
   disabled?: boolean;
   name: string;
+  $error: boolean;
 }
 
 export interface FormDataMakeAppointment {

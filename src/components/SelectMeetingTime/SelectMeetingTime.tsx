@@ -23,6 +23,7 @@ const SelectMeetingTime: FC<SelectMeetingTimeProps> = ({
   onBlur,
   disabled,
   name,
+  $error,
 }) => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -45,7 +46,7 @@ const SelectMeetingTime: FC<SelectMeetingTimeProps> = ({
         isDisabled={disabled}
         options={optionsSelectMeetingTime}
         placeholder={"00 : 00"}
-        styles={customStyles}
+        styles={customStyles({ error: $error })}
         menuIsOpen={isMenuOpen}
         onMenuOpen={toggleMenu}
         onMenuClose={toggleMenu}
