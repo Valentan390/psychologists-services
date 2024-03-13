@@ -107,3 +107,12 @@ export interface FormDataMakeAppointment {
   meetingTime: string;
   userComment: string;
 }
+
+export interface InputFormProps {
+  name: string;
+  placeholder: string;
+  type: string;
+  register: UseFormRegister<FormDataMakeAppointment>;
+  errors: FieldErrors;
+  width?: string;
+}

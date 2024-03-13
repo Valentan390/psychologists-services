@@ -7,7 +7,6 @@ import {
   StyledMakeForm,
   StyledMakeFormButton,
   StyledMakeFormContainer,
-  StyledMakeFormInput,
   StyledMakeFormTexterea,
   StyledMakeFoto,
   StyledMakeFotoName,
@@ -20,10 +19,10 @@ import {
 } from "./MakeAppointmentModal.styled";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import SelectMeetingTime from "../../SelectMeetingTime/SelectMeetingTime.tsx";
 import { schemaMakeAppointment } from "../../../helpers/validation.ts";
 import { FormDataMakeAppointment } from "../../../helpers/InterfaceData.ts";
+import InputForm from "../../InputForm/InputForm.tsx";
 
 const MakeAppointmentModal = () => {
   const { makeAppointmentPsychologist, handleCloseModal } = useModalHandler();
@@ -69,27 +68,23 @@ const MakeAppointmentModal = () => {
       </StyledMakeFotoName>
 
       <StyledMakeForm onSubmit={onSubmit}>
-        <StyledMakeLabel>
-          <StyledMakeFormInput
-            $error={!!errors.userName}
-            type="text"
-            placeholder="Name"
-            {...register("userName")}
-          />
-          <StyledMakeError>{errors.userName?.message}</StyledMakeError>
-        </StyledMakeLabel>
+        <InputForm
+          name="userName"
+          type="text"
+          placeholder="Name"
+          register={register}
+          errors={errors}
+        />
 
         <StyledMakeFormContainer>
-          <StyledMakeLabel $width="calc">
-            <StyledMakeFormInput
-              $props="tel"
-              $error={!!errors.userPhone}
-              type="tel"
-              placeholder="+380"
-              {...register("userPhone")}
-            />
-            <StyledMakeError>{errors.userPhone?.message}</StyledMakeError>
-          </StyledMakeLabel>
+          <InputForm
+            name="userPhone"
+            type="tel"
+            placeholder="+380"
+            register={register}
+            errors={errors}
+            width="calc"
+          />
 
           <Controller
             name="meetingTime"
@@ -104,15 +99,13 @@ const MakeAppointmentModal = () => {
           />
         </StyledMakeFormContainer>
 
-        <StyledMakeLabel>
-          <StyledMakeFormInput
-            $error={!!errors.email}
-            type="email"
-            placeholder="Email"
-            {...register("email")}
-          />
-          <StyledMakeError>{errors.email?.message}</StyledMakeError>
-        </StyledMakeLabel>
+        <InputForm
+          name="email"
+          placeholder="Email"
+          type="email"
+          register={register}
+          errors={errors}
+        />
 
         <StyledMakeLabel>
           <StyledMakeFormTexterea
