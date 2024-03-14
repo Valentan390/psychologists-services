@@ -1,10 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import PsychologistsList from "../../components/PsychologistsList/PsychologistsList";
 import {
-  StyledPsychologistsPageSection,
-  StyledPsychologistsPageWrapper,
-} from "./PsychologistsPage.styled";
-import {
   getDatabase,
   ref,
   onValue,
@@ -18,6 +14,7 @@ import {
 import { useDispatch } from "react-redux";
 import { setPsychologists } from "../../redux/psyhologists/psyhologistsSlice";
 import { PsychologistInter } from "../../helpers/InterfaceData";
+import MainPsychologists from "../../components/MainPsychologists/MainPsychologists";
 
 const PsychologistsPage: FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -44,16 +41,12 @@ const PsychologistsPage: FC = () => {
   }, [currentPage, psychologistsPerPage, dispatch]);
 
   return (
-    <main>
-      <StyledPsychologistsPageSection>
-        <StyledPsychologistsPageWrapper className="container">
-          <PsychologistsList
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          />
-        </StyledPsychologistsPageWrapper>
-      </StyledPsychologistsPageSection>
-    </main>
+    <MainPsychologists>
+      <PsychologistsList
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
+    </MainPsychologists>
   );
 };
 

@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { setFilter } from "../../redux/filter/filterSlise";
+import { setFilter, setFavoriteFilter } from "../../redux/filter/filterSlise";
 import { StyledOptionInter } from "../../helpers/InterfaceData";
 import { customStyles } from "./SelectCustomStyles";
 import { options } from "../../helpers/ComponentData";
 import { StyledSelectTitle } from "./SelectPsychologists.styled";
 
-const SelectPsychologists = () => {
+interface SelectPsychologistsProps {
+  typeSelect?: string;
+}
+
+const SelectPsychologists: FC<SelectPsychologistsProps> = ({ typeSelect }) => {
   const [selectedOption, setSelectedOption] =
     useState<StyledOptionInter | null>(options[0]);
 
@@ -18,8 +22,12 @@ const SelectPsychologists = () => {
   };
 
   useEffect(() => {
-    dispatch(setFilter(selectedOption));
-  }, [dispatch, selectedOption]);
+    dispatch(
+      typeSelect === "Favorites"
+        ? setFavoriteFilter(selectedOption)
+        : setFilter(selectedOption)
+    );
+  }, [dispatch, typeSelect, selectedOption]);
 
   return (
     <>

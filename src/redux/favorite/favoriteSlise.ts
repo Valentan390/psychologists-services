@@ -1,7 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PsychologistInter } from "../../helpers/InterfaceData";
 
 interface FavoriteState {
-  favoritesArray: { name: string }[];
+  favoritesArray: PsychologistInter[];
 }
 
 const favoriteInitialState: FavoriteState = {
@@ -12,7 +13,7 @@ const favoriteSlise = createSlice({
   name: "favorite",
   initialState: favoriteInitialState,
   reducers: {
-    addFavorites: (state, action: PayloadAction<{ name: string }>) => {
+    addFavorites: (state, action: PayloadAction<PsychologistInter>) => {
       state.favoritesArray.push(action.payload);
     },
     removeFavorites: (state, action: PayloadAction<{ name: string }>) => {
