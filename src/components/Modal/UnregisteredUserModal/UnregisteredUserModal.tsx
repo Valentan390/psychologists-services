@@ -1,3 +1,4 @@
+import { FC } from "react";
 import useModalHandler from "../../../hooks/useModalHandler";
 import ButtonClose from "../../Button/ButtonClose/ButtonClose";
 import {
@@ -7,7 +8,13 @@ import {
   StyledUnregisteredWrapper,
 } from "./UnregisteredUserModal.styled";
 
-const UnregisteredUserModal = () => {
+interface UnregisteredUserModalProps {
+  typeModal?: string;
+}
+
+const UnregisteredUserModal: FC<UnregisteredUserModalProps> = ({
+  typeModal,
+}) => {
   const { handleCloseModal, handleOpenModal } = useModalHandler();
 
   const toggleModal = async (modalType: string) => {
@@ -19,8 +26,9 @@ const UnregisteredUserModal = () => {
     <StyledUnregisteredWrapper>
       <ButtonClose />
       <StyledUnregisteredTitle>
-        To be able to add or remove to favorites, register or log into the
-        application using your login.
+        {typeModal === "Favorites"
+          ? "The favorites page is available to registered users. Please register or log into the application using your username."
+          : "To be able to add or remove to favorites, register or log into the application using your login."}
       </StyledUnregisteredTitle>
       <StyledUnregisteredSinInButton
         onClick={() => {

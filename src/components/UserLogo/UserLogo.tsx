@@ -6,9 +6,17 @@ import {
   StyledLogoUserWrapper,
   StyledLogoWrapper,
 } from "./UserLogo.styled";
+import useAuthUser from "../../hooks/useAuthUser";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import { removeUser } from "../../redux/authUser/authUserSlice";
 
 const UserLogo: FC = () => {
-  const name = "Valentin";
+  const { name } = useAuthUser();
+  const dispatch = useAppDispatch();
+
+  const userLogOut = () => {
+    dispatch(removeUser());
+  };
   return (
     <StyledLogoWrapper>
       <StyledLogoUserWrapper>
@@ -20,7 +28,9 @@ const UserLogo: FC = () => {
         />
         <StyledLogoName>{name}</StyledLogoName>
       </StyledLogoUserWrapper>
-      <StyledLogoButton type="button">Log out</StyledLogoButton>
+      <StyledLogoButton type="button" onClick={userLogOut}>
+        Log out
+      </StyledLogoButton>
     </StyledLogoWrapper>
   );
 };

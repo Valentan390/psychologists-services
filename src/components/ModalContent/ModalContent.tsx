@@ -16,6 +16,8 @@ const ModalContent: FC = () => {
       return <MakeAppointmentModal />;
     case "UnregisteredUserModal":
       return <UnregisteredUserModal />;
+    case "UnregisteredUserModalFavorites":
+      return <UnregisteredUserModal typeModal="Favorites" />;
     default:
       return null;
   }
