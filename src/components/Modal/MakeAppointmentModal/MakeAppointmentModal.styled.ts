@@ -4,7 +4,7 @@ export const StyledMakeWrapper = styled.div`
   width: 600px;
   //   max-height: 700px;
   border-radius: 30px;
-  background: #fbfbfb;
+  background: var(--silkWhite);
   padding: 64px;
   position: relative;
   overflow-y: auto;

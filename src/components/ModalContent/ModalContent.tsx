@@ -2,6 +2,7 @@ import { FC } from "react";
 import SignUpAndSignInModal from "../Modal/SignUpAndSignInModal/SignUpAndSignInModal";
 import useModalHandler from "../../hooks/useModalHandler";
 import MakeAppointmentModal from "../Modal/MakeAppointmentModal/MakeAppointmentModal";
+import UnregisteredUserModal from "../Modal/UnregisteredUserModal/UnregisteredUserModal";
 
 const ModalContent: FC = () => {
   const { modalContent } = useModalHandler();
@@ -13,6 +14,8 @@ const ModalContent: FC = () => {
       return <SignUpAndSignInModal modalType="SignIn" />;
     case "MakeAppointment":
       return <MakeAppointmentModal />;
+    case "UnregisteredUserModal":
+      return <UnregisteredUserModal />;
     default:
       return null;
   }

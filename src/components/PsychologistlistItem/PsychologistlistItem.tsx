@@ -28,6 +28,8 @@ import {
   addFavorites,
   removeFavorites,
 } from "../../redux/favorite/favoriteSlise";
+import useAuthUser from "../../hooks/useAuthUser";
+import useModalHandler from "../../hooks/useModalHandler";
 
 interface Psychologist {
   avatar_url: string;
@@ -50,19 +52,24 @@ const PsychologistlistItem: FC<PsychologistlistItemProps> = ({
   psychologist,
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
-
+  const { isAuth } = useAuthUser();
+  const { handleOpenModal } = useModalHandler();
   const favorites = useSelector(selectFavorite);
   const dispatch = useDispatch();
 
-  const isFavorite = favorites.some(
-    (favorite) => favorite.name === psychologist.name
-  );
+  const isFavorite = isAuth
+    ? favorites.some((favorite) => favorite.name === psychologist.name)
+    : false;
 
   const toggleFavorite = (psychologist: Psychologist) => {
-    if (isFavorite) {
-      dispatch(removeFavorites(psychologist));
+    if (isAuth) {
+      if (isFavorite) {
+        dispatch(removeFavorites(psychologist));
+      } else {
+        dispatch(addFavorites(psychologist));
+      }
     } else {
-      dispatch(addFavorites(psychologist));
+      handleOpenModal("UnregisteredUserModal");
     }
   };
 
