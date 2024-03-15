@@ -23,4 +23,9 @@ export const StyledPsychologistsButton = styled.button`
   margin-top: 28px;
   margin-left: auto;
   margin-right: auto;
+  transition: var(--transition);
+
+  &:hover {
+    background: var(--seaGreen);
+  }
 `;
