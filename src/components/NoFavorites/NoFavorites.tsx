@@ -1,4 +1,3 @@
-import React from "react";
 import picture from "../../images/dasctop/thinking.webp";
 import {
   StyledNoFavoritesFoto,
