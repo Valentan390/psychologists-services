@@ -60,23 +60,23 @@ const ModalContainer = ({ children }: { children: ReactNode }) => {
     };
   }, [element, handleKeyDown, modalStatus]);
 
-  return modalStatus
-    ? createPortal(
-        <AnimatePresence>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <StyledModalContainerBackdrop onClick={handleBackdropClick}>
-              {children}
-            </StyledModalContainerBackdrop>
-          </motion.div>
-        </AnimatePresence>,
-        element
-      )
-    : null;
+  return createPortal(
+    <AnimatePresence>
+      {modalStatus && (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <StyledModalContainerBackdrop onClick={handleBackdropClick}>
+            {children}
+          </StyledModalContainerBackdrop>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    element
+  );
 };
 
 export default ModalContainer;

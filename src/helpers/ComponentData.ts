@@ -36,7 +36,7 @@ export const containerVariants: Variants = {
   },
   exit: {
     opacity: 0,
-    transition: { delay: 0, duration: 0.5 },
+    transition: { delay: 0, duration: 0.8 },
   },
 };
 
