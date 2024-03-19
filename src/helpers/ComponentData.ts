@@ -11,6 +11,10 @@ export const navLinks: NavLinks[] = [
   { to: "/psychologists", text: "Psychologists" },
   { to: "/favorites", text: "Favorites" },
 ];
+export const navLinksAuth: NavLinks[] = [
+  { to: "/home", text: "Home" },
+  { to: "/psychologists", text: "Psychologists" },
+];
 
 export const inputSignUp: InputsAuthInter[] = [
   { name: "username", placeholder: "Name" },

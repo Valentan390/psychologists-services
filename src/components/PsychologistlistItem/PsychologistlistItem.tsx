@@ -22,16 +22,17 @@ import {
   StyledWrapper,
 } from "./PsychologistlistItem.styled";
 import PsychologistItemReviews from "../PsychologistItemReviews/PsychologistItemReviews";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectFavorite } from "../../redux/favorite/favoriteSelectors";
-import {
-  addFavorites,
-  removeFavorites,
-} from "../../redux/favorite/favoriteSlise";
 import useAuthUser from "../../hooks/useAuthUser";
 import useModalHandler from "../../hooks/useModalHandler";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import {
+  addFavoritePsychologist,
+  removeFavoritePsychologist,
+} from "../../redux/favorite/operations";
 
-interface Psychologist {
+export interface Psychologist {
   avatar_url: string;
   name: string;
   rating: number;
@@ -55,18 +56,19 @@ const PsychologistlistItem: FC<PsychologistlistItemProps> = ({
   const { isAuth } = useAuthUser();
   const { handleOpenModal } = useModalHandler();
   const favorites = useSelector(selectFavorite);
-  const dispatch = useDispatch();
+
+  const dispatch = useAppDispatch();
 
   const isFavorite = isAuth
-    ? favorites.some((favorite) => favorite.name === psychologist.name)
+    ? favorites?.some((favorite) => favorite.name === psychologist.name)
     : false;
 
   const toggleFavorite = (psychologist: Psychologist) => {
     if (isAuth) {
       if (isFavorite) {
-        dispatch(removeFavorites(psychologist));
+        dispatch(removeFavoritePsychologist(psychologist));
       } else {
-        dispatch(addFavorites(psychologist));
+        dispatch(addFavoritePsychologist(psychologist));
       }
     } else {
       handleOpenModal("UnregisteredUserModal");

@@ -1,7 +1,6 @@
 import { ComponentType, FC } from "react";
 import { Navigate } from "react-router-dom";
 import useAuthUser from "../../hooks/useAuthUser";
-import useModalHandler from "../../hooks/useModalHandler";
 // import { useAuth } from "../../hooks/userAuth.js";
 
 interface PrivateRouteProps {
@@ -14,14 +13,13 @@ export const PrivateRoute: FC<PrivateRouteProps> = ({
   redirectTo = "/",
 }) => {
   const { isAuth } = useAuthUser();
-  const { handleOpenModal } = useModalHandler();
+  // const { handleOpenModal } = useModalHandler();
 
-  return !isAuth ? (
-    <>
-      {handleOpenModal("UnregisteredUserModalFavorites")}
-      <Navigate to={redirectTo} />
-    </>
-  ) : (
-    <Component />
-  );
+  // useEffect(() => {
+  //   if (!isAuth) {
+  //     handleOpenModal("UnregisteredUserModalFavorites");
+  //   }
+  // }, [isAuth, handleOpenModal]);
+
+  return !isAuth ? <Navigate to={redirectTo} /> : <Component />;
 };

@@ -1,11 +1,13 @@
 import { FC } from "react";
 import { StyledNav, StyledNavLink } from "./Navigation.styled";
-import { navLinks } from "../../helpers/ComponentData";
+import { navLinks, navLinksAuth } from "../../helpers/ComponentData";
+import useAuthUser from "../../hooks/useAuthUser";
 
 const Navigation: FC = () => {
+  const { isAuth } = useAuthUser();
   return (
     <StyledNav>
-      {navLinks.map((link, index) => (
+      {(!isAuth ? navLinksAuth : navLinks).map((link, index) => (
         <StyledNavLink key={index} to={link.to}>
           {link.text}
         </StyledNavLink>
