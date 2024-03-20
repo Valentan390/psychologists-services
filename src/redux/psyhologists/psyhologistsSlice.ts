@@ -1,21 +1,45 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchPsychologists } from "./operationsPsychologists";
 import { PsychologistInter } from "../../helpers/InterfaceData";
-import { PsychologistsStateinter } from "../../helpers/InterfaceData";
 
-const psyhologistsInitialState: PsychologistsStateinter = {
+interface PsychologistsState {
+  psychologists: PsychologistInter[];
+  isLoadingPsychologist: boolean;
+  error: string | undefined;
+  currentPage: number;
+}
+
+const psychologistsInitialState: PsychologistsState = {
   psychologists: [],
+  isLoadingPsychologist: false,
+  error: "",
+  currentPage: 0,
 };
 
-const psyhologistsSlice = createSlice({
+const psychologistsSlice = createSlice({
   name: "psychologists",
-  initialState: psyhologistsInitialState,
+  initialState: psychologistsInitialState,
   reducers: {
-    setPsychologists: (state, action: PayloadAction<PsychologistInter[]>) => {
-      state.psychologists = action.payload;
+    setCurrentPage: (state) => {
+      state.currentPage = state.currentPage + 1;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPsychologists.pending, (state) => {
+        state.isLoadingPsychologist = true;
+      })
+      .addCase(fetchPsychologists.fulfilled, (state, action) => {
+        state.isLoadingPsychologist = false;
+        state.psychologists = [...state.psychologists, ...action.payload.data];
+      })
+      .addCase(fetchPsychologists.rejected, (state, action) => {
+        state.isLoadingPsychologist = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { setPsychologists } = psyhologistsSlice.actions;
+export const { setCurrentPage } = psychologistsSlice.actions;
 
-export const psychologistsReduser = psyhologistsSlice.reducer;
+export const psychologistsReduser = psychologistsSlice.reducer;

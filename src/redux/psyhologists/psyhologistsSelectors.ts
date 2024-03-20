@@ -4,6 +4,12 @@ import { createSelector } from "@reduxjs/toolkit";
 export const selectPsychologists = (state: RootState) =>
   state.psychologists.psychologists;
 
+export const selectCurrentPage = (state: RootState) =>
+  state.psychologists.currentPage;
+
+export const selectLoadingPsychologist = (state: RootState) =>
+  state.psychologists.isLoadingPsychologist;
+
 export const selectFilterValue = (state: RootState) =>
   state.filter.selectFilter;
 

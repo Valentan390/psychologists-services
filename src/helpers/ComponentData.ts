@@ -7,12 +7,12 @@ import {
 import { Variants } from "framer-motion";
 
 export const navLinks: NavLinks[] = [
-  { to: "/home", text: "Home" },
+  { to: "/", text: "Home" },
   { to: "/psychologists", text: "Psychologists" },
   { to: "/favorites", text: "Favorites" },
 ];
 export const navLinksAuth: NavLinks[] = [
-  { to: "/home", text: "Home" },
+  { to: "/", text: "Home" },
   { to: "/psychologists", text: "Psychologists" },
 ];
 

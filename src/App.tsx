@@ -10,25 +10,38 @@ import ModalContent from "./components/ModalContent/ModalContent";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
+import { useAppDispatch } from "./hooks/useReduxHooks";
+import { fetchPsychologists } from "./redux/psyhologists/operationsPsychologists";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentPage,
+  selectLoadingPsychologist,
+} from "./redux/psyhologists/psyhologistsSelectors";
+import LoaderHourglass from "./components/LoaderHourglass/LoaderHourglass";
 
 const App = () => {
-  const { refresUser, isLoading } = useAuth();
+  const { refresUser } = useAuth();
+  const dispatch = useAppDispatch();
+  const currentPage = useSelector(selectCurrentPage);
+  const isLoadingPsychologist = useSelector(selectLoadingPsychologist);
 
   useEffect(() => {
     refresUser();
   }, [refresUser]);
 
+  useEffect(() => {
+    dispatch(fetchPsychologists({ currentPage }));
+  }, [dispatch, currentPage]);
+
   return (
     <>
-      {isLoading ? (
-        <div>Loading...</div>
+      {isLoadingPsychologist ? (
+        <LoaderHourglass />
       ) : (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="/home" element={<HomePage />} />
             <Route path="/psychologists" element={<PsychologistsPage />} />
-
             <Route
               path="/favorites"
               element={

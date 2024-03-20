@@ -81,7 +81,7 @@ export const fetchUserFavorites = createAsyncThunk(
       const auth = getAuth();
       const userId = auth.currentUser?.uid;
       if (!userId) {
-        throw new Error("User ID is not available");
+        // throw new Error("User ID is not available");
       }
 
       const db = getDatabase();

@@ -5,22 +5,13 @@ import {
 } from "./PsychologistsList.styled";
 import SelectPsychologists from "../SelectPsychologists/SelectPsychologists";
 import { useSelector } from "react-redux";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import sortPsychologists from "../../redux/psyhologists/psyhologistsSelectors";
+import { setCurrentPage } from "../../redux/psyhologists/psyhologistsSlice";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
 
-interface PsychologistsListProps {
-  setCurrentPage: Dispatch<SetStateAction<number>>;
-  currentPage: number;
-}
-
-const PsychologistsList: FC<PsychologistsListProps> = ({
-  setCurrentPage,
-  currentPage,
-}) => {
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
+const PsychologistsList: FC = () => {
+  const dispatch = useAppDispatch();
   const filterPsychologists = useSelector(sortPsychologists);
 
   return (
@@ -31,9 +22,15 @@ const PsychologistsList: FC<PsychologistsListProps> = ({
           <PsychologistlistItem key={index} psychologist={psychologist} />
         ))}
       </StyledPsychologistsList>
-      <StyledPsychologistsButton onClick={handleNextPage}>
-        Load more
-      </StyledPsychologistsButton>
+      {filterPsychologists.length < 29 && (
+        <StyledPsychologistsButton
+          onClick={() => {
+            dispatch(setCurrentPage());
+          }}
+        >
+          Load more
+        </StyledPsychologistsButton>
+      )}
     </>
   );
 };
