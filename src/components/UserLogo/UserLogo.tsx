@@ -7,11 +7,11 @@ import {
   StyledLogoWrapper,
 } from "./UserLogo.styled";
 import useAuthUser from "../../hooks/useAuthUser";
-import { useAuth } from "../../hooks/useAuth";
+import useModalHandler from "../../hooks/useModalHandler";
 
 const UserLogo: FC = () => {
   const { name } = useAuthUser();
-  const { logOutUser } = useAuth();
+  const { handleOpenModal } = useModalHandler();
 
   return (
     <StyledLogoWrapper>
@@ -24,7 +24,10 @@ const UserLogo: FC = () => {
         />
         <StyledLogoName>{name}</StyledLogoName>
       </StyledLogoUserWrapper>
-      <StyledLogoButton type="button" onClick={logOutUser}>
+      <StyledLogoButton
+        type="button"
+        onClick={() => handleOpenModal("LogoutModal")}
+      >
         Log out
       </StyledLogoButton>
     </StyledLogoWrapper>

@@ -1,32 +1,75 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AuthUserDataInter } from "../../helpers/InterfaceData";
+import { CaseReducer, PayloadAction, createSlice } from "@reduxjs/toolkit";
+import {
+  refreshUser,
+  logOutUser,
+  signUpUser,
+  sinInUser,
+} from "./operationsAuthUser";
+import { User } from "../../helpers/InterfaceData";
 
-const authUserInitialState: AuthUserDataInter = {
-  name: "",
-  email: "",
-  token: "",
-  id: "",
+interface InitialState {
+  user: User;
+  isLoading: boolean;
+  error: string | undefined;
+}
+
+const initialState: InitialState = {
+  user: {
+    email: "",
+    id: "",
+    token: "",
+    name: "",
+  },
+  isLoading: false,
+  error: "",
+};
+
+const handlePendingAction: CaseReducer<InitialState> = (state) => {
+  state.isLoading = true;
+};
+
+const handleRejectedAction: CaseReducer<InitialState, any> = (
+  state,
+  action
+) => {
+  state.isLoading = false;
+  state.error = action.error.message;
 };
 
 const authUserSlise = createSlice({
   name: "authUser",
-  initialState: authUserInitialState,
-  reducers: {
-    setUser: (state, action: PayloadAction<AuthUserDataInter>) => {
-      state.name = action.payload.name;
-      state.email = action.payload.email;
-      state.token = action.payload.token;
-      state.id = action.payload.id;
-    },
-    removeUser: (state) => {
-      state.name = "";
-      state.email = "";
-      state.token = "";
-      state.id = "";
-    },
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(refreshUser.pending, handlePendingAction)
+      .addCase(refreshUser.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(refreshUser.rejected, handleRejectedAction)
+
+      .addCase(logOutUser.pending, handlePendingAction)
+      .addCase(logOutUser.fulfilled, (state) => {
+        state.isLoading = false;
+        state.user = initialState.user;
+      })
+      .addCase(logOutUser.rejected, handleRejectedAction)
+
+      .addCase(signUpUser.pending, handlePendingAction)
+      .addCase(signUpUser.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(signUpUser.rejected, handleRejectedAction)
+
+      .addCase(sinInUser.pending, handlePendingAction)
+      .addCase(sinInUser.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(sinInUser.rejected, handleRejectedAction);
   },
 });
-
-export const { setUser, removeUser } = authUserSlise.actions;
 
 export const authUserReducer = authUserSlise.reducer;

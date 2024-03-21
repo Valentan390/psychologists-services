@@ -3,6 +3,7 @@ import SignUpAndSignInModal from "../Modal/SignUpAndSignInModal/SignUpAndSignInM
 import useModalHandler from "../../hooks/useModalHandler";
 import MakeAppointmentModal from "../Modal/MakeAppointmentModal/MakeAppointmentModal";
 import UnregisteredUserModal from "../Modal/UnregisteredUserModal/UnregisteredUserModal";
+import LogoutModal from "../Modal/LogoutModal/LogoutModal";
 
 const ModalContent: FC = () => {
   const { modalContent } = useModalHandler();
@@ -18,6 +19,8 @@ const ModalContent: FC = () => {
       return <UnregisteredUserModal />;
     case "UnregisteredUserModalFavorites":
       return <UnregisteredUserModal typeModal="Favorites" />;
+    case "LogoutModal":
+      return <LogoutModal />;
     default:
       return null;
   }

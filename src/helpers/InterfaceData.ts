@@ -116,3 +116,10 @@ export interface InputFormProps {
   errors: FieldErrors;
   width?: string;
 }
+
+export interface User {
+  email: string;
+  id: string;
+  token: string;
+  name: string;
+}

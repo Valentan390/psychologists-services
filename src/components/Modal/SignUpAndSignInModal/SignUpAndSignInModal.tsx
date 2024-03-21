@@ -15,13 +15,20 @@ import {
 import { FormData } from "../../../helpers/InterfaceData";
 import { inputSignUp, inputSignIn } from "../../../helpers/ComponentData";
 import ButtonClose from "../../Button/ButtonClose/ButtonClose";
-import { useAuth } from "../../../hooks/useAuth";
+import { useAppDispatch } from "../../../hooks/useReduxHooks";
+import {
+  signUpUser,
+  sinInUser,
+} from "../../../redux/authUser/operationsAuthUser";
+import { toast } from "react-toastify";
+import useModalHandler from "../../../hooks/useModalHandler";
 
 const SignUpAndSignInModal: FC<{ modalType: string }> = ({
   modalType = "SignUp",
 }) => {
   const schema = modalType === "SignUp" ? schemaSignup : schemaSignin;
-  const { handleAuth } = useAuth();
+  const { handleCloseModal } = useModalHandler();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -34,7 +41,27 @@ const SignUpAndSignInModal: FC<{ modalType: string }> = ({
   });
 
   const onSubmit = handleSubmit(async ({ username, email, password }) => {
-    handleAuth({ email, password, username, modalType, reset });
+    if (modalType === "SignUp") {
+      try {
+        await dispatch(signUpUser({ username, email, password }));
+        await handleCloseModal();
+        reset();
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(`${error.message}`);
+        }
+      }
+    } else {
+      try {
+        await dispatch(sinInUser({ email, password }));
+        await handleCloseModal();
+        reset();
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(`${error.message}`);
+        }
+      }
+    }
   });
 
   return (

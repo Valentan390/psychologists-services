@@ -9,7 +9,6 @@ import ModalContainer from "./components/ModalContainer/ModalContainer";
 import ModalContent from "./components/ModalContent/ModalContent";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { useEffect } from "react";
-import { useAuth } from "./hooks/useAuth";
 import { useAppDispatch } from "./hooks/useReduxHooks";
 import { fetchPsychologists } from "./redux/psyhologists/operationsPsychologists";
 import { useSelector } from "react-redux";
@@ -18,18 +17,15 @@ import {
   selectLoadingPsychologist,
 } from "./redux/psyhologists/psyhologistsSelectors";
 import LoaderHourglass from "./components/LoaderHourglass/LoaderHourglass";
+import { refreshUser } from "./redux/authUser/operationsAuthUser";
 
 const App = () => {
-  const { refresUser } = useAuth();
   const dispatch = useAppDispatch();
   const currentPage = useSelector(selectCurrentPage);
   const isLoadingPsychologist = useSelector(selectLoadingPsychologist);
 
   useEffect(() => {
-    refresUser();
-  }, [refresUser]);
-
-  useEffect(() => {
+    dispatch(refreshUser());
     dispatch(fetchPsychologists({ currentPage }));
   }, [dispatch, currentPage]);
 
