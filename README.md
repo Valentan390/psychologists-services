@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# PSYCHOLOGISTS-SERVICES - application for companies that offer the services of psychologists.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Review
 
-Currently, two official plugins are available:
+PSYCHOLOGISTS-SERVICES - is a web application designed to help users choose, save and order psychologists' services, and make an appointment.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Functions
 
-## Expanding the ESLint configuration
+- **User-friendly interface:** the application has an intuitive interface that allows users to easily navigate and select psychologists based on various criteria.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Filtering psychologist:** users can select psychologists by rating, price per hour of consultation, and alphabet.
 
-- Configure the top-level `parserOptions` property like this:
+- **Saving selected psychologists:** users have the opportunity to save and view their favorite psychologists on the application’s favorites page.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Application
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**1. Go to link:**
+
+- [https://psychologists-services-topaz.vercel.app/]
+
+**2. Register:**
+
+- register or log in to your account.
+
+**3. Choose a psychologist:**
+
+- On the psychologists page, select the psychologist you like.
+
+  **4. Make an appointment:**
+
+  - After choosing a psychologist, fill out and submit the appointment form.
+
+## Technologies Used in the Project
+
+- HTML5
+- CSS
+- JavaScript
+- TypeScript
+- React
+- Redux
