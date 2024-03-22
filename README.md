@@ -26,9 +26,9 @@ PSYCHOLOGISTS-SERVICES - is a web application designed to help users choose, sav
 
 - On the psychologists page, select the psychologist you like.
 
-  **4. Make an appointment:**
+**4. Make an appointment:**
 
-  - After choosing a psychologist, fill out and submit the appointment form.
+- After choosing a psychologist, fill out and submit the appointment form.
 
 ## Technologies Used in the Project
 
