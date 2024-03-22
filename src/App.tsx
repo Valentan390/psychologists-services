@@ -2,16 +2,12 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "./components/Layout/Layout";
-import HomePage from "./pages/HomePage/HomePage";
-import PsychologistsPage from "./pages/PsychologistsPage/PsychologistsPage";
-import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import ModalContainer from "./components/ModalContainer/ModalContainer";
 import ModalContent from "./components/ModalContent/ModalContent";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { useEffect } from "react";
-import { useAppDispatch } from "./hooks/useReduxHooks";
+import { lazy, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./hooks/useReduxHooks";
 import { fetchPsychologists } from "./redux/psyhologists/operationsPsychologists";
-import { useSelector } from "react-redux";
 import {
   selectCurrentPage,
   selectLoadingPsychologist,
@@ -19,10 +15,16 @@ import {
 import LoaderHourglass from "./components/LoaderHourglass/LoaderHourglass";
 import { refreshUser } from "./redux/authUser/operationsAuthUser";
 
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const PsychologistsPage = lazy(
+  () => import("./pages/PsychologistsPage/PsychologistsPage")
+);
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage/FavoritesPage"));
+
 const App = () => {
   const dispatch = useAppDispatch();
-  const currentPage = useSelector(selectCurrentPage);
-  const isLoadingPsychologist = useSelector(selectLoadingPsychologist);
+  const currentPage = useAppSelector(selectCurrentPage);
+  const isLoadingPsychologist = useAppSelector(selectLoadingPsychologist);
 
   useEffect(() => {
     dispatch(refreshUser());
