@@ -1,5 +1,7 @@
 # PSYCHOLOGISTS-SERVICES - application for companies that offer the services of psychologists.
 
+![Psychologist Image](/src/images/dasctop/psychologists_services.webp)
+
 ## Review
 
 PSYCHOLOGISTS-SERVICES - is a web application designed to help users choose, save and order psychologists' services, and make an appointment.
